@@ -778,9 +778,11 @@ public class JuegoFrame extends JFrame {
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panel.setLayout(new BorderLayout(0, 16));
 
-        JLabel actorLabel = new JLabel("Turno privado: " + actor);
+        JTextArea actorLabel = new JTextArea("Turno privado: " + actor);
+        Theme.styleTextArea(actorLabel, true);
         actorLabel.setFont(Theme.SECTION_FONT);
         actorLabel.setForeground(Theme.GOLD);
+        actorLabel.setMaximumSize(new Dimension(560, 72));
 
         JTextArea descriptionArea = new JTextArea(description);
         Theme.styleTextArea(descriptionArea, true);
@@ -842,7 +844,7 @@ public class JuegoFrame extends JFrame {
         dialog.setContentPane(panel);
         dialog.setResizable(false);
         dialog.pack();
-        dialog.setSize(Math.max(dialog.getWidth(), 470), dialog.getHeight());
+        dialog.setSize(Math.max(dialog.getWidth(), 620), dialog.getHeight());
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
 
