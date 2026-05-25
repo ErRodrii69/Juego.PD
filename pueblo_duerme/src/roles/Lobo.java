@@ -1,7 +1,7 @@
 package roles;
 
-import juego.Jugador;
 import juego.JuegoJuego;
+import juego.Jugador;
 
 public class Lobo extends Rol {
 
@@ -13,7 +13,6 @@ public class Lobo extends Rol {
     public void accionNocturna(Jugador actor, Jugador objetivo, JuegoJuego juego) {
         if (objetivo != null && objetivo.isVivo()) {
             juego.marcarParaMorir(objetivo);
-            System.out.println("  [NOCHE] " + actor.getNombre() + " (Lobo) ataca a " + objetivo.getNombre());
         }
     }
 

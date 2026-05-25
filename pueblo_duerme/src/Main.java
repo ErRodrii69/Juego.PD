@@ -1,8 +1,8 @@
-import juego.JuegoJuego;
+import javax.swing.SwingUtilities;
+import ui.JuegoFrame;
 
 public class Main {
     public static void main(String[] args) {
-        JuegoJuego juego = new JuegoJuego();
-        juego.iniciarJuego();
+        SwingUtilities.invokeLater(() -> new JuegoFrame().setVisible(true));
     }
 }

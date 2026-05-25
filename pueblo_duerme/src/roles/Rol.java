@@ -1,11 +1,11 @@
 package roles;
 
-import juego.Jugador;
 import juego.JuegoJuego;
+import juego.Jugador;
 
 public abstract class Rol {
-    protected String nombreRol;
-    protected String descripcion;
+    protected final String nombreRol;
+    protected final String descripcion;
 
     public Rol(String nombreRol, String descripcion) {
         this.nombreRol = nombreRol;
@@ -18,8 +18,13 @@ public abstract class Rol {
         return false;
     }
 
-    public String getNombreRol() { return nombreRol; }
-    public String getDescripcion() { return descripcion; }
+    public String getNombreRol() {
+        return nombreRol;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
 
     @Override
     public String toString() {

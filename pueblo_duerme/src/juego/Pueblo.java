@@ -2,44 +2,48 @@ package juego;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Pueblo {
 
-    private List<Jugador> jugadores;
+    private final List<Jugador> jugadores;
 
     public Pueblo(List<Jugador> jugadores) {
         this.jugadores = new ArrayList<>(jugadores);
     }
 
-    /** Devuelve solo los jugadores vivos. */
     public List<Jugador> getVivos() {
         return jugadores.stream()
                 .filter(Jugador::isVivo)
-                .collect(Collectors.toList());
+                .toList();
     }
 
-    /** Cuenta los lobos vivos. */
     public long contarLobosVivos() {
         return getVivos().stream()
-                .filter(j -> j.getRol().esLobo())
+                .filter(jugador -> jugador.getRol().esLobo())
                 .count();
     }
 
-    /** Cuenta los aldeanos/especiales vivos (no-lobos). */
     public long contarAldeanosVivos() {
         return getVivos().stream()
-                .filter(j -> !j.getRol().esLobo())
+                .filter(jugador -> !jugador.getRol().esLobo())
                 .count();
     }
 
-    /** Muestra el estado público: jugadores vivos sin revelar roles. */
     public void mostrarEstadoPublico() {
-        System.out.println("\n══ JUGADORES VIVOS ══");
-        getVivos().forEach(j -> System.out.println("  • " + j.getNombre()));
-        System.out.println("  Total vivos: " + getVivos().size()
-                + "  (Lobos conocidos: ocultos)");
+        System.out.println(describirEstadoPublico());
     }
 
-    public List<Jugador> getTodos() { return jugadores; }
+    public String describirEstadoPublico() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Jugadores vivos:\n");
+        for (Jugador jugador : getVivos()) {
+            builder.append(" - ").append(jugador.getNombre()).append('\n');
+        }
+        builder.append("Total vivos: ").append(getVivos().size());
+        return builder.toString();
+    }
+
+    public List<Jugador> getTodos() {
+        return List.copyOf(jugadores);
+    }
 }

@@ -1,20 +1,18 @@
 package roles;
 
-import juego.Jugador;
 import juego.JuegoJuego;
+import juego.Jugador;
 
 public class Vidente extends Rol {
 
     public Vidente() {
-        super("Vidente", "Puede revelar el rol secreto de un jugador cada noche.");
+        super("Vidente", "Puede descubrir el rol de un jugador vivo cada noche.");
     }
 
     @Override
     public void accionNocturna(Jugador actor, Jugador objetivo, JuegoJuego juego) {
         if (objetivo != null && objetivo.isVivo()) {
-            System.out.println("  [NOCHE - VIDENTE] " + actor.getNombre()
-                    + " ve que " + objetivo.getNombre()
-                    + " es: " + objetivo.getRol().getNombreRol());
+            juego.registrarVisionPrivada(actor, objetivo);
         }
     }
 }

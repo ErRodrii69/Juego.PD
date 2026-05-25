@@ -1,7 +1,7 @@
 package roles;
 
-import juego.Jugador;
 import juego.JuegoJuego;
+import juego.Jugador;
 
 public class Bruja extends Rol {
 
@@ -9,20 +9,18 @@ public class Bruja extends Rol {
     private boolean tieneVeneno = true;
 
     public Bruja() {
-        super("Bruja", "Posee una poción de cura y una de veneno, cada una de uso único.");
+        super("Bruja", "Tiene una pocion de cura y una de veneno, ambas de uso unico.");
     }
 
     @Override
     public void accionNocturna(Jugador actor, Jugador objetivo, JuegoJuego juego) {
-        // La lógica interactiva de cura/veneno se gestiona desde JuegoJuego
-        // para mantener el control centralizado del flujo
+        // La bruja se resuelve desde la clase central del juego.
     }
 
     public boolean usarCura(Jugador objetivo, JuegoJuego juego) {
         if (tieneCura && objetivo != null) {
             juego.salvarDeNoche(objetivo);
             tieneCura = false;
-            System.out.println("  [NOCHE - BRUJA] Usa la poción de CURA sobre " + objetivo.getNombre());
             return true;
         }
         return false;
@@ -32,12 +30,16 @@ public class Bruja extends Rol {
         if (tieneVeneno && objetivo != null && objetivo.isVivo()) {
             juego.marcarParaMorir(objetivo);
             tieneVeneno = false;
-            System.out.println("  [NOCHE - BRUJA] Usa la poción de VENENO sobre " + objetivo.getNombre());
             return true;
         }
         return false;
     }
 
-    public boolean tieneCura()    { return tieneCura; }
-    public boolean tieneVeneno()  { return tieneVeneno; }
+    public boolean tieneCura() {
+        return tieneCura;
+    }
+
+    public boolean tieneVeneno() {
+        return tieneVeneno;
+    }
 }
