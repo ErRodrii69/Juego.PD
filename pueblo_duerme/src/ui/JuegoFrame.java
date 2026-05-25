@@ -77,8 +77,8 @@ public class JuegoFrame extends JFrame {
         super("Lobos de la Aldea");
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(1180, 760));
-        setSize(1360, 860);
+        setMinimumSize(new Dimension(1080, 720));
+        setSize(1280, 820);
         setLocationRelativeTo(null);
 
         setContentPane(buildRoot());
@@ -90,7 +90,7 @@ public class JuegoFrame extends JFrame {
     private JComponent buildRoot() {
         BackdropPanel root = new BackdropPanel();
         root.setLayout(new BorderLayout());
-        root.setBorder(BorderFactory.createEmptyBorder(24, 24, 24, 24));
+        root.setBorder(BorderFactory.createEmptyBorder(18, 18, 18, 18));
 
         screenPanel.setOpaque(false);
         screenPanel.add(buildConfigScreen(), CARD_CONFIG);
@@ -106,26 +106,26 @@ public class JuegoFrame extends JFrame {
         JPanel wrapper = new JPanel(new GridBagLayout());
         wrapper.setOpaque(false);
 
-        RoundedPanel card = new RoundedPanel(Theme.CARD_SOFT, Theme.CARD_END, 34);
+        RoundedPanel card = new RoundedPanel(Theme.CARD_SOFT, Theme.CARD_END, Theme.CARD_RADIUS);
         card.setBorder(Theme.cardPadding());
         card.setLayout(new BorderLayout(0, 20));
-        card.setPreferredSize(new Dimension(760, 680));
+        card.setPreferredSize(new Dimension(880, 680));
 
         JPanel heroPanel = new JPanel();
         heroPanel.setOpaque(false);
         heroPanel.setLayout(new BoxLayout(heroPanel, BoxLayout.Y_AXIS));
 
-        JLabel titleLabel = new JLabel("Lobos de la Aldea");
+        JLabel titleLabel = new JLabel("El Pueblo Duerme");
         titleLabel.setFont(Theme.TITLE_FONT);
         titleLabel.setForeground(Theme.TEXT);
         titleLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        JLabel subtitleLabel = new JLabel("Juego por turnos basado en el PDF, ahora con interfaz grafica.");
+        JLabel subtitleLabel = new JLabel("Roles secretos, noche, dia y votacion en una mesa guiada.");
         subtitleLabel.setFont(Theme.BODY_FONT);
         subtitleLabel.setForeground(Theme.MUTED);
         subtitleLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        JLabel noteLabel = new JLabel("La partida se juega desde una sola ventana y el sistema controla todos los anuncios oficiales.");
+        JLabel noteLabel = new JLabel("El sistema anuncia los resultados oficiales y no revela roles de jugadores vivos.");
         noteLabel.setFont(Theme.SMALL_FONT);
         noteLabel.setForeground(Theme.MUTED);
         noteLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -136,7 +136,7 @@ public class JuegoFrame extends JFrame {
         heroPanel.add(Box.createVerticalStrut(4));
         heroPanel.add(noteLabel);
 
-        JPanel topGrid = new JPanel(new GridLayout(1, 2, 16, 0));
+        JPanel topGrid = new JPanel(new GridLayout(1, 2, 14, 0));
         topGrid.setOpaque(false);
         topGrid.add(buildPlayerCountCard());
         topGrid.add(buildRolePreviewCard());
@@ -147,7 +147,7 @@ public class JuegoFrame extends JFrame {
         JScrollPane namesScrollPane = Theme.createScrollPane(nombresPanel);
 
         AccentButton createButton = new AccentButton("Crear partida", Theme.GOLD);
-        createButton.setPreferredSize(new Dimension(210, 44));
+        createButton.setPreferredSize(new Dimension(220, 44));
         createButton.addActionListener(event -> createGameFromForm());
 
         JPanel buttonRow = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 0));
@@ -155,9 +155,8 @@ public class JuegoFrame extends JFrame {
         buttonRow.add(createButton);
 
         card.add(heroPanel, BorderLayout.NORTH);
-        card.add(topGrid, BorderLayout.CENTER);
 
-        RoundedPanel namesCard = new RoundedPanel(Theme.CARD_START, Theme.CARD_END, 28);
+        RoundedPanel namesCard = new RoundedPanel(Theme.CARD_START, Theme.CARD_END, Theme.CARD_RADIUS);
         namesCard.setBorder(BorderFactory.createEmptyBorder(16, 16, 16, 16));
         namesCard.setLayout(new BorderLayout(0, 12));
 
@@ -183,10 +182,10 @@ public class JuegoFrame extends JFrame {
         JPanel wrapper = new JPanel(new GridBagLayout());
         wrapper.setOpaque(false);
 
-        RoundedPanel card = new RoundedPanel(Theme.CARD_ACCENT, Theme.CARD_END, 36);
+        RoundedPanel card = new RoundedPanel(Theme.CARD_ACCENT, Theme.CARD_END, Theme.CARD_RADIUS);
         card.setBorder(BorderFactory.createEmptyBorder(28, 30, 28, 30));
         card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
-        card.setPreferredSize(new Dimension(640, 540));
+        card.setPreferredSize(new Dimension(660, 520));
 
         revealStepLabel.setFont(Theme.SMALL_FONT);
         revealStepLabel.setForeground(Theme.GOLD);
@@ -211,7 +210,7 @@ public class JuegoFrame extends JFrame {
         revealActionButton.setMaximumSize(new Dimension(250, 48));
         revealActionButton.addActionListener(event -> handleRevealAction());
 
-        JLabel privacyLabel = new JLabel("Pasa el dispositivo al siguiente jugador antes de pulsar.");
+        JLabel privacyLabel = new JLabel("Pantalla privada: solo debe mirarla el jugador indicado.");
         privacyLabel.setFont(Theme.SMALL_FONT);
         privacyLabel.setForeground(Theme.MUTED);
         privacyLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -250,11 +249,11 @@ public class JuegoFrame extends JFrame {
     }
 
     private JComponent buildHeaderPanel() {
-        RoundedPanel header = new RoundedPanel(Theme.CARD_START, Theme.CARD_SOFT, 28);
+        RoundedPanel header = new RoundedPanel(Theme.CARD_START, Theme.CARD_SOFT, Theme.CARD_RADIUS);
         header.setBorder(BorderFactory.createEmptyBorder(18, 22, 18, 22));
         header.setLayout(new BorderLayout(16, 0));
 
-        headerTitleLabel.setFont(new java.awt.Font("Georgia", java.awt.Font.BOLD, 28));
+        headerTitleLabel.setFont(Theme.TITLE_FONT.deriveFont(27f));
         headerTitleLabel.setForeground(Theme.TEXT);
 
         headerStateLabel.setFont(Theme.SECTION_FONT);
@@ -282,16 +281,16 @@ public class JuegoFrame extends JFrame {
     }
 
     private JComponent buildPlayersPanel() {
-        RoundedPanel panel = new RoundedPanel(Theme.CARD_START, Theme.CARD_END, 28);
+        RoundedPanel panel = new RoundedPanel(Theme.CARD_START, Theme.CARD_END, Theme.CARD_RADIUS);
         panel.setBorder(BorderFactory.createEmptyBorder(18, 18, 18, 18));
         panel.setLayout(new BorderLayout(0, 14));
-        panel.setPreferredSize(new Dimension(290, 100));
+        panel.setPreferredSize(new Dimension(300, 100));
 
         JLabel title = new JLabel("Aldea");
         title.setFont(Theme.SECTION_FONT);
         title.setForeground(Theme.TEXT);
 
-        JLabel subtitle = new JLabel("Solo se revelan roles al morir o al final.");
+        JLabel subtitle = new JLabel("Roles ocultos hasta muerte o final.");
         subtitle.setFont(Theme.SMALL_FONT);
         subtitle.setForeground(Theme.MUTED);
 
@@ -312,15 +311,15 @@ public class JuegoFrame extends JFrame {
     }
 
     private JComponent buildLogPanel() {
-        RoundedPanel panel = new RoundedPanel(Theme.CARD_SOFT, Theme.CARD_END, 28);
+        RoundedPanel panel = new RoundedPanel(Theme.CARD_SOFT, Theme.CARD_END, Theme.CARD_RADIUS);
         panel.setBorder(BorderFactory.createEmptyBorder(18, 18, 18, 18));
         panel.setLayout(new BorderLayout(0, 14));
 
-        JLabel title = new JLabel("Cronica oficial");
+        JLabel title = new JLabel("Anuncios oficiales");
         title.setFont(Theme.SECTION_FONT);
         title.setForeground(Theme.TEXT);
 
-        JLabel subtitle = new JLabel("Este registro es publico y sigue las reglas del PDF.");
+        JLabel subtitle = new JLabel("Solo el juego comunica muertes, roles revelados y rondas.");
         subtitle.setFont(Theme.SMALL_FONT);
         subtitle.setForeground(Theme.MUTED);
 
@@ -342,10 +341,10 @@ public class JuegoFrame extends JFrame {
     }
 
     private JComponent buildActionPanel() {
-        RoundedPanel panel = new RoundedPanel(Theme.CARD_ACCENT, Theme.CARD_END, 28);
+        RoundedPanel panel = new RoundedPanel(Theme.CARD_ACCENT, Theme.CARD_END, Theme.CARD_RADIUS);
         panel.setBorder(BorderFactory.createEmptyBorder(18, 18, 18, 18));
         panel.setLayout(new BorderLayout(0, 14));
-        panel.setPreferredSize(new Dimension(330, 100));
+        panel.setPreferredSize(new Dimension(340, 100));
 
         actionTitleLabel.setFont(Theme.SECTION_FONT);
         actionTitleLabel.setForeground(Theme.TEXT);
@@ -385,7 +384,7 @@ public class JuegoFrame extends JFrame {
     }
 
     private JComponent buildPlayerCountCard() {
-        RoundedPanel card = new RoundedPanel(Theme.CARD_START, Theme.CARD_END, 24);
+        RoundedPanel card = new RoundedPanel(Theme.CARD_START, Theme.CARD_END, Theme.CARD_RADIUS);
         card.setBorder(BorderFactory.createEmptyBorder(16, 16, 16, 16));
         card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
 
@@ -394,7 +393,7 @@ public class JuegoFrame extends JFrame {
         label.setForeground(Theme.TEXT);
         label.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        JLabel help = new JLabel("El PDF exige un minimo de 4 jugadores.");
+        JLabel help = new JLabel("Requisito PDF: minimo 4 jugadores.");
         help.setFont(Theme.SMALL_FONT);
         help.setForeground(Theme.MUTED);
         help.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -420,7 +419,7 @@ public class JuegoFrame extends JFrame {
     }
 
     private JComponent buildRolePreviewCard() {
-        RoundedPanel card = new RoundedPanel(Theme.CARD_START, Theme.CARD_END, 24);
+        RoundedPanel card = new RoundedPanel(Theme.CARD_START, Theme.CARD_END, Theme.CARD_RADIUS);
         card.setBorder(BorderFactory.createEmptyBorder(16, 16, 16, 16));
         card.setLayout(new BorderLayout(0, 12));
 
@@ -467,8 +466,8 @@ public class JuegoFrame extends JFrame {
 
     private String buildRolePreviewHtml(int totalPlayers) {
         List<String> reparto = JuegoJuego.describirReparto(totalPlayers);
-        StringBuilder html = new StringBuilder("<html><div style='font-family:Segoe UI; color:#ACB8CC;'>");
-        html.append("El reparto sigue los roles obligatorios y las opciones del PDF.<br><br>");
+        StringBuilder html = new StringBuilder("<html><div style='font-family:Segoe UI; color:#B8BEB8;'>");
+        html.append("Reparto automatico segun los roles del PDF:<br><br>");
         for (String rol : reparto) {
             html.append("- ").append(rol).append("<br>");
         }
@@ -513,11 +512,11 @@ public class JuegoFrame extends JFrame {
     private void refreshRevealScreen() {
         if (juego.getEstado() == EstadoJuego.LISTA_PARA_INICIAR) {
             revealStepLabel.setText("Todos los roles han sido repartidos");
-            revealNameLabel.setText("La aldea esta preparada");
+            revealNameLabel.setText("La mesa esta preparada");
             revealRoleLabel.setText("Comenzar partida");
             revealRoleLabel.setForeground(Theme.GOLD);
             revealDescriptionArea.setText(
-                    "La primera ronda empieza de noche. Durante la partida, la interfaz publica no mostrara roles de jugadores vivos.");
+                    "La primera ronda empieza de noche. Durante la partida, la pantalla publica no mostrara roles de jugadores vivos.");
             revealActionButton.setText("Entrar en la noche 1");
             return;
         }
@@ -540,7 +539,7 @@ public class JuegoFrame extends JFrame {
             revealRoleLabel.setText("Rol oculto");
             revealRoleLabel.setForeground(Theme.MUTED);
             revealDescriptionArea.setText(
-                    "Solo " + jugador.getNombre() + " debe mirar esta pantalla. Cuando termine, pulsa para revelar su carta.");
+                    "Solo " + jugador.getNombre() + " debe mirar esta pantalla. Pulsa cuando sea seguro revelar su carta.");
             revealActionButton.setText("Mostrar mi rol");
         } else {
             revealRoleLabel.setText(jugador.getRol().getNombreRol());
@@ -621,8 +620,9 @@ public class JuegoFrame extends JFrame {
 
     private void refreshGameScreen() {
         headerStateLabel.setText(juego.getTituloEstado());
-        headerInfoLabel.setText("Ronda " + juego.getRondaActual() + "  |  Jugadores vivos: " + juego.getTotalVivos());
-        headerWinnerLabel.setText(juego.getGanador() == null ? "" : "Ganador provisional: " + juego.getGanador());
+        headerInfoLabel.setText("Ronda " + juego.getRondaActual() + "  |  Vivos: " + juego.getTotalVivos()
+                + "  |  Roles secretos protegidos");
+        headerWinnerLabel.setText(juego.getGanador() == null ? "" : "Gana el bando " + juego.getGanador());
 
         refreshPlayersList();
         refreshLogArea();
@@ -642,26 +642,25 @@ public class JuegoFrame extends JFrame {
     }
 
     private JComponent createPlayerCard(Jugador jugador) {
-        Color start = jugador.isVivo() ? Theme.CARD_SOFT : new Color(57, 62, 79, 230);
-        Color end = jugador.isVivo() ? Theme.CARD_END : new Color(39, 43, 56, 235);
+        Color start = jugador.isVivo() ? Theme.CARD_SOFT : new Color(46, 47, 47, 230);
+        Color end = jugador.isVivo() ? Theme.CARD_END : new Color(31, 32, 33, 235);
 
-        RoundedPanel card = new RoundedPanel(start, end, 22);
-        card.setBorder(BorderFactory.createEmptyBorder(14, 14, 14, 14));
-        card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
+        RoundedPanel card = new RoundedPanel(start, end, Theme.CARD_RADIUS);
+        card.setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
+        card.setLayout(new BorderLayout(12, 0));
+        card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 78));
 
         JLabel name = new JLabel(jugador.getNombre());
         name.setFont(Theme.SECTION_FONT);
         name.setForeground(Theme.TEXT);
-        name.setAlignmentX(Component.LEFT_ALIGNMENT);
+        name.setToolTipText(jugador.getNombre());
 
         JLabel status = new JLabel(jugador.isVivo() ? "Vivo" : "Eliminado");
         status.setFont(Theme.SMALL_FONT);
         status.setForeground(jugador.isVivo() ? Theme.GREEN : Theme.DEAD);
-        status.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         JLabel role = new JLabel();
         role.setFont(Theme.BODY_FONT);
-        role.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         boolean revealRole = juego.getEstado() == EstadoJuego.FIN || !jugador.isVivo();
         if (revealRole) {
@@ -672,11 +671,22 @@ public class JuegoFrame extends JFrame {
             role.setForeground(Theme.MUTED);
         }
 
-        card.add(name);
-        card.add(Box.createVerticalStrut(4));
-        card.add(status);
-        card.add(Box.createVerticalStrut(10));
-        card.add(role);
+        JLabel stateMarker = new JLabel(jugador.isVivo() ? "V" : "X", SwingConstants.CENTER);
+        stateMarker.setFont(Theme.BUTTON_FONT);
+        stateMarker.setForeground(jugador.isVivo() ? Theme.GREEN : Theme.DEAD);
+        stateMarker.setPreferredSize(new Dimension(34, 34));
+        stateMarker.setBorder(BorderFactory.createLineBorder(jugador.isVivo() ? Theme.GREEN : Theme.DEAD));
+
+        JPanel textBlock = new JPanel();
+        textBlock.setOpaque(false);
+        textBlock.setLayout(new BoxLayout(textBlock, BoxLayout.Y_AXIS));
+        textBlock.add(name);
+        textBlock.add(Box.createVerticalStrut(4));
+        textBlock.add(status);
+
+        card.add(stateMarker, BorderLayout.WEST);
+        card.add(textBlock, BorderLayout.CENTER);
+        card.add(role, BorderLayout.EAST);
         return card;
     }
 
@@ -764,11 +774,11 @@ public class JuegoFrame extends JFrame {
         JDialog dialog = new JDialog(this, title, true);
         dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        RoundedPanel panel = new RoundedPanel(Theme.CARD_ACCENT, Theme.CARD_END, 28);
+        RoundedPanel panel = new RoundedPanel(Theme.CARD_ACCENT, Theme.CARD_END, Theme.CARD_RADIUS);
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panel.setLayout(new BorderLayout(0, 16));
 
-        JLabel actorLabel = new JLabel("Pasa el dispositivo a " + actor);
+        JLabel actorLabel = new JLabel("Turno privado: " + actor);
         actorLabel.setFont(Theme.SECTION_FONT);
         actorLabel.setForeground(Theme.GOLD);
 
@@ -843,7 +853,7 @@ public class JuegoFrame extends JFrame {
         JDialog dialog = new JDialog(this, title, true);
         dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        RoundedPanel panel = new RoundedPanel(Theme.CARD_SOFT, Theme.CARD_END, 28);
+        RoundedPanel panel = new RoundedPanel(Theme.CARD_SOFT, Theme.CARD_END, Theme.CARD_RADIUS);
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panel.setLayout(new BorderLayout(0, 14));
 

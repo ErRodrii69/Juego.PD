@@ -16,7 +16,7 @@ public class RoundedPanel extends JPanel {
     public RoundedPanel(Color startColor, Color endColor, int arc) {
         this.startColor = startColor;
         this.endColor = endColor;
-        this.arc = arc;
+        this.arc = Math.min(arc, Theme.CARD_RADIUS);
         setOpaque(false);
     }
 
@@ -25,8 +25,8 @@ public class RoundedPanel extends JPanel {
         Graphics2D g2 = (Graphics2D) graphics.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        g2.setColor(new Color(0, 0, 0, 55));
-        g2.fillRoundRect(5, 7, getWidth() - 10, getHeight() - 8, arc, arc);
+        g2.setColor(new Color(0, 0, 0, 44));
+        g2.fillRoundRect(3, 5, getWidth() - 6, getHeight() - 6, arc, arc);
 
         g2.setPaint(new GradientPaint(0, 0, startColor, getWidth(), getHeight(), endColor));
         g2.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, arc, arc);

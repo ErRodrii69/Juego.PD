@@ -3,6 +3,7 @@ package ui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.RenderingHints;
 import javax.swing.JButton;
 
@@ -18,6 +19,7 @@ public class AccentButton extends JButton {
         this.pressedColor = baseColor.darker();
         this.disabledColor = new Color(88, 97, 116);
         Theme.prepareButton(this);
+        setMargin(new Insets(9, 16, 9, 16));
     }
 
     @Override
@@ -31,9 +33,9 @@ public class AccentButton extends JButton {
         }
 
         g2.setColor(fill);
-        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 18, 18);
+        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 10, 10);
         g2.setColor(new Color(255, 255, 255, 28));
-        g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 18, 18);
+        g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 10, 10);
         g2.dispose();
 
         super.paintComponent(graphics);

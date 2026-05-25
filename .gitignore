@@ -1,0 +1,10 @@
+# Java build output
+*.class
+pueblo_duerme/out/
+pueblo_duerme/build/
+
+# IDE and local files
+.idea/
+.vscode/
+*.iml
+*.log
