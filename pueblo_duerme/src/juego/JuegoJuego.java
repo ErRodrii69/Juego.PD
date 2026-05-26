@@ -488,21 +488,16 @@ public class JuegoJuego {
 
         List<String> reparto = new ArrayList<>();
         int lobos = calcularCantidadLobos(totalJugadores);
-        int usados = lobos + 1;
+        int usados = lobos + 3;
         reparto.add(lobos + (lobos == 1 ? " Lobo" : " Lobos"));
         reparto.add("1 Vidente");
-
-        if (totalJugadores >= 6) {
-            reparto.add("1 Bruja");
-            usados++;
-        }
-        if (totalJugadores >= 7) {
-            reparto.add("1 Cazador");
-            usados++;
-        }
+        reparto.add("1 Bruja");
+        reparto.add("1 Cazador");
 
         int aldeanos = totalJugadores - usados;
-        reparto.add(aldeanos + (aldeanos == 1 ? " Aldeano" : " Aldeanos"));
+        if (aldeanos > 0) {
+            reparto.add(aldeanos + (aldeanos == 1 ? " Aldeano" : " Aldeanos"));
+        }
         return reparto;
     }
 
@@ -715,12 +710,8 @@ public class JuegoJuego {
         }
 
         roles.add(new Vidente());
-        if (total >= 6) {
-            roles.add(new Bruja());
-        }
-        if (total >= 7) {
-            roles.add(new Cazador());
-        }
+        roles.add(new Bruja());
+        roles.add(new Cazador());
 
         while (roles.size() < total) {
             roles.add(new Aldeano());

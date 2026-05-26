@@ -14,8 +14,8 @@ Resumen operativo del enunciado `UT4_Proyecto3.pdf` usado para mantener el proye
 - `Lobo`: marca una victima por la noche.
 - `Aldeano`: no actua por la noche y usa el voto.
 - `Vidente`: consulta el rol de un jugador.
-- `Bruja`: rol opcional con una cura y un veneno.
-- `Cazador`: rol opcional que dispara al morir.
+- `Bruja`: rol integrado en el reparto con una cura y un veneno.
+- `Cazador`: rol integrado en el reparto que dispara al morir.
 
 ## Reglas implementadas
 
