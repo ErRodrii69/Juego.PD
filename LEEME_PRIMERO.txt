@@ -1,0 +1,82 @@
+╔════════════════════════════════════════════════════════════════╗
+║     LOBOS DE LA ALDEA - EL PUEBLO DUERME                       ║
+║     Instrucciones para ejecutar el juego                       ║
+╚════════════════════════════════════════════════════════════════╝
+
+REQUISITOS:
+═══════════
+✓ Java JDK 8 o superior instalado
+  Descarga desde: https://www.oracle.com/java/technologies/downloads/
+  
+  Para verificar que está instalado:
+  - Abre una terminal (cmd o PowerShell)
+  - Escribe: java -version
+  - Si aparece un número de versión, está correcto
+
+
+CÓMO EJECUTAR:
+══════════════
+
+OPCIÓN 1 - MÁS FÁCIL (Windows):
+───────────────────────────────
+  1. Haz doble clic en: EJECUTAR_JUEGO.bat
+  2. Espera a que se compile y inicie automáticamente
+  3. ¡Listo! El juego se abrirá en una ventana
+
+OPCIÓN 2 - Desde PowerShell:
+──────────────────────────
+  1. Abre PowerShell en esta carpeta
+  2. Escribe: .\EJECUTAR_JUEGO.ps1
+  3. Presiona Enter
+
+OPCIÓN 3 - Desde Terminal (cmd):
+────────────────────────────────
+  1. Abre cmd en esta carpeta
+  2. Escribe: EJECUTAR_JUEGO.bat
+  3. Presiona Enter
+
+
+ESTRUCTURA DEL PROYECTO:
+════════════════════════
+pueblo_duerme/
+├── src/
+│   ├── Main.java           - Punto de entrada
+│   ├── juego/              - Lógica del juego
+│   ├── roles/              - Sistema de roles
+│   └── ui/                 - Interfaz gráfica
+├── out/                    - Archivos compilados (se crean automáticamente)
+└── docs/                   - Documentación
+
+El proyecto se compilará automáticamente en la carpeta pueblo_duerme/out/
+
+
+SOLUCIÓN DE PROBLEMAS:
+══════════════════════
+
+❌ "No se reconoce el comando java"
+   → Instala Java desde: https://www.oracle.com/java/technologies/downloads/
+   → O añade Java al PATH del sistema
+
+❌ "Error de compilación"
+   → Asegúrate de que todos los archivos .java están en pueblo_duerme/src/
+   → Verifica que no hay errores de sintaxis
+
+❌ "No se abre la ventana del juego"
+   → Revisa la consola para ver mensajes de error
+   → Intenta ejecutar manualmente con: java -cp pueblo_duerme\out Main
+
+
+INFORMACIÓN DEL JUEGO:
+══════════════════════
+- Juego inspirado en "Lobos de la Aldea" (Werewolf)
+- Interfaz gráfica con Swing
+- Desarrollado en Java Orientado a Objetos
+- Roles: Aldeano, Bruja, Cazador, Lobo, Vidente
+
+
+¿Preguntas?
+═══════════
+Revisa el archivo README.md para más información técnica.
+
+
+¡Que disfrutes el juego!
